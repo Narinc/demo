@@ -1,0 +1,162 @@
+apply plugin: 'com.android.application'
+
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'test'
+            keyPassword 'qeaszqeasz'
+            storeFile file('/Users/kuka/AndroidStudioProjects/narinc/kahve-dunyasi-barista/app/kahvedunyasi_barista_test')
+            storePassword 'qeaszqeasz'
+        }
+    }
+    compileSdkVersion rootProject.ext.compileSdkVersion
+
+    defaultConfig {
+        applicationId "com.kahvedunyasi.barista"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        development {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", '"http://kd.pankod.com"'
+            buildConfigField "String", "SAMPLE_URL", '"https://jsonplaceholder.typicode.com/"'
+            signingConfig signingConfigs.config
+        }
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "String", "BASE_URL", '"http://kd.pankod.com"'
+            signingConfig signingConfigs.config
+        }
+        debug {
+            signingConfig signingConfigs.config
+        }
+    }
+
+    packagingOptions {
+        exclude "META-INF/license.txt"
+        exclude "META-INF/notice.txt"
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    flavorDimensions "default"
+
+    productFlavors {
+        staging {
+            resValue "string", "LoyaltyDebug", "Loyalty Dev"
+            buildConfigField "boolean", "IS_PRODUCTION", "false"
+            buildConfigField "String", "BASE_URL", '"http://kd.pankod.com"'
+            buildConfigField "String", "SAMPLE_URL", '"https://jsonplaceholder.typicode.com/"'
+            applicationIdSuffix ".staging"
+        }
+
+        production {
+            resValue "string", "Loyalty", "Loyalty"
+            buildConfigField "boolean", "IS_PRODUCTION", "true"
+            buildConfigField "String", "BASE_URL", '"http://kd.pankod.com"'
+            buildConfigField "String", "SAMPLE_URL", '"https://jsonplaceholder.typicode.com/"'
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:design:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation "com.android.support:support-vector-drawable:$rootProject.supportLibraryVersion"
+    implementation "com.android.support:cardview-v7:$rootProject.supportLibraryVersion"
+
+    //Firebase Cloud Messaging
+    implementation "com.google.firebase:firebase-core:$rootProject.firebaseVersion"
+    implementation "com.google.firebase:firebase-iid:$rootProject.firebaseIidVersion"
+    implementation "com.google.firebase:firebase-messaging:$rootProject.firebaseMessagingVersion"
+    implementation "com.google.firebase:firebase-auth:$rootProject.firebaseAuthVersion"
+
+    //location service
+    implementation "com.google.android.gms:play-services-location:$rootProject.googleVersion"
+    implementation "com.google.android.gms:play-services-auth:$rootProject.googleVersion"
+
+    // Facebook Android SDK (only required for Facebook Login)
+
+    // Used in FacebookLoginActivity.
+    implementation 'com.facebook.android:facebook-login:4.32.0'
+    implementation 'com.android.support:customtabs:27.1.1'
+
+    //networking
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.rxJava2RetrofitAdapterVersion"
+
+    //reactive
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjava2Version"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+
+    //dependency injection
+    implementation "com.google.dagger:dagger:$rootProject.dagger2Version"
+    implementation 'com.android.support:support-v4:27.1.1'
+    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
+
+    //view code generator
+    implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
+
+    //circle image view
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    // required
+    implementation 'io.branch.sdk.android:library:2.+'
+
+    //image
+    implementation 'com.squareup.picasso:picasso:2.71828'
+
+    //http client
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+
+    // parser
+    compile "com.google.code.gson:gson:$rootProject.gsonVersion"
+
+    //barcode generator
+    compile 'com.google.zxing:core:3.2.1'
+    compile 'com.journeyapps:zxing-android-embedded:3.2.0@aar'
+
+    //barcode scanner
+    compile 'me.dm7.barcodescanner:zxing:1.9.8'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation('com.android.support.test:runner:1.0.2') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:3.0.2') {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    compile('com.crashlytics.sdk.android:crashlytics:2.9.2@aar') {
+        transitive = true;
+    }
+    compile('com.crashlytics.sdk.android:answers:1.4.1@aar') {
+        transitive = true;
+    }
+
+    // Circle Indicator source: https://github.com/ongakuer/CircleIndicator
+    implementation 'me.relex:circleindicator:1.2.2@aar'
+    compile 'org.java-websocket:Java-WebSocket:1.3.0'
+}

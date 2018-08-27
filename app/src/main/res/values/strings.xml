@@ -1,0 +1,57 @@
+<resources>
+
+    <string name="app_name">Barista</string>
+    <string name="app_market_link" />
+    <string name="app_google_play_store_link" />
+
+    <string name="submit_button_text">DEVAM ET</string>
+
+    <string name="empty_warning">%1$s giriniz!</string>
+    <string name="max_length_warning">%1$s çok uzun! (%2$s)</string>
+    <string name="min_length_warning">%1$s çok kısa! (%2$s)</string>
+
+    <string name="not_valid_email">Geçerli bir email adresi giriniz!</string>
+
+
+    <!--SHOPPING-->
+
+    <!--Shopping Mode-->
+
+    <!--Shopping Store-->
+
+    <!--Shopping Everything-->
+
+    <!--Shopping Shop Detail-->
+
+    <!--Shopping Search -->
+
+
+    <!--OPPORTUNITY-->
+    <!--Opportunity Mode-->
+
+    <!--Opportunity Agreement-->
+
+    <!--Opportunity Auction Detail-->
+
+    <!--Opportunity Time Limit Detail-->
+
+    <string name="logout">Çıkış Yap</string>
+
+    <!-- Product Detail -->
+
+    <!-- Cart -->
+
+    <!-- Order -->
+
+    <!-- Order Detail -->
+
+    <!--Game Mode Activity-->
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="has_stock">Stokta</string>
+    <string name="stock_out">Tükendi</string>
+    <string name="navigation_view_header_title">Kahve Dünyası</string>
+    <string name="refresh">Yenile</string>
+    <string name="sign_as_busy">Şubeyi yoğun olarak işaretle</string>
+
+</resources>

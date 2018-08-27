@@ -1,0 +1,14 @@
+package com.kahvedunyasi.barista.ui.base;
+
+
+public interface MvpPresenter<V extends MvpView> {
+
+    void onAttach(V mvpView);
+
+    void onDetach();
+
+    void loggedIn();
+
+    void loggedOut();
+
+}

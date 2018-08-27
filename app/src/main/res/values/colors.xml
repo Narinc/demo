@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#860037</color>
+    <color name="colorPrimaryDark">#860037</color>
+    <color name="colorAccent">#860037</color>
+
+    <color name="green_kd">#006B64</color>
+
+    <color name="white">#ffffff</color>
+
+    <!--Opportunity Mode-->
+
+
+    <!-- Product Detail -->
+    <color name="iten_name_bg">#66000000</color>
+
+    <!-- Order Detail -->
+
+
+</resources>
