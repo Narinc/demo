@@ -19,15 +19,21 @@ import retrofit2.http.Query;
  */
 
 public interface RobotbosServiceImpl {
+    @GET("/api/RobotPosProduct/GetAllRobotposProducts")
     Observable<List<RobotPosProduct>> getRobotPosProductList(@Header("Authorization") String token);
 
+    @GET("/api/TakeAway/Barista/Products")
     Observable<List<RobotPosProduct>> getProductListByStoreCode(@Header("Authorization") String authToken, @Query("shopId") String storeCode);
 
+    @POST("api/takeaway/barista/stockout/create")
     Observable<ResponseBody> stockOutProduct(@Header("Authorization") String authToken, @Body StockOutRequest outRequest);
 
+    @POST("api/takeaway/barista/stockout/delete")
     Observable<ResponseBody> stockInProduct(@Header("Authorization") String authToken, @Body StockOutRequest outRequest);
 
+    @POST("/api/takeaway/barista/closedshop/create")
     Observable<ResponseBody> signAsBusyBranch(@Header("Authorization") String authToken, @Body CloseShopRequest closeShopRequest);
 
+    @POST("/api/takeaway/barista/closedshop/delete")
     Observable<ResponseBody> signAsNotBusyBranch(@Header("Authorization") String authToken, @Body CloseShopRequest closeShopRequest);
 }
